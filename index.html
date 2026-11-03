@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#102b38"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Buzz 手冊">
+<title>ID. Buzz 車機中文查詢</title>
+<style>
+:root{color-scheme:light;--ink:#102b38;--muted:#607784;--line:#dde7e9;--bg:#f4f7f7;--blue:#0d6477;--white:#fff}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","PingFang TC",sans-serif}header{background:var(--ink);color:white;padding:calc(env(safe-area-inset-top) + 29px) 22px 29px}.wrap{max-width:760px;margin:auto}header .tag{font-size:12px;letter-spacing:.15em;color:#91ccd4;font-weight:700}h1{font-size:29px;letter-spacing:-.03em;margin:9px 0 9px}header p{line-height:1.7;color:#d6e5e9;margin:0;font-size:14px}.search-box{position:relative;margin-top:22px}input{display:block;width:100%;border:0;border-radius:13px;padding:16px 17px;font-size:17px;background:#fff;outline:none;color:var(--ink);box-shadow:0 5px 16px #081a2522}input:focus{box-shadow:0 0 0 3px #89cbd9}main{max-width:760px;margin:auto;padding:20px 17px 50px}.chips{display:flex;gap:8px;overflow:auto;padding:2px 0 17px;scrollbar-width:none}.chip{white-space:nowrap;border-radius:20px;padding:10px 14px;border:1px solid #cadadd;background:#fff;color:#385864;font-size:13px;font-weight:650;cursor:pointer}.chip.active{background:var(--ink);color:#fff;border-color:var(--ink)}.summary{display:flex;align-items:center;justify-content:space-between;margin:8px 2px 12px;color:var(--muted);font-size:13px}.card{display:block;background:white;border:1px solid var(--line);border-radius:16px;padding:17px;margin-bottom:10px;text-decoration:none;color:inherit;box-shadow:0 2px 9px #102b3806}.card:active{transform:scale(.995)}.cardtop{display:flex;gap:12px;align-items:start;justify-content:space-between}.card h2{margin:0;font-size:17px;line-height:1.4}.eng{font-size:12px;color:var(--blue);margin:4px 0 0;font-weight:600}.desc{font-size:14px;line-height:1.75;color:#526a74;margin:13px 0 0}.pg{flex-shrink:0;color:#0b5d6b;background:#e7f4f6;padding:7px 9px;border-radius:9px;font-size:12px;font-weight:750}.cardfoot{font-size:12px;color:var(--blue);margin-top:12px;font-weight:700}.panel{background:#e8f0f1;padding:15px;border-radius:14px;margin:18px 0;font-size:13px;line-height:1.7;color:#44616d}.panel strong{color:var(--ink)}.link{color:#075d72;font-weight:700}.empty{background:white;text-align:center;border:1px solid var(--line);padding:45px 15px;border-radius:15px;color:var(--muted)}footer{text-align:center;font-size:12px;line-height:1.8;color:#718790;padding:16px}mark{background:#fff0b7;border-radius:3px;color:inherit}button{font:inherit}#reset{border:0;background:transparent;color:var(--blue);font-size:13px;font-weight:700;cursor:pointer}
+</style>
+</head>
+<body>
+<header><div class="wrap"><div class="tag">VOLKSWAGEN ID. BUZZ · QUICK GUIDE</div><h1>車機中文查詢</h1><p>看不懂英文車機選單？輸入英文或中文功能名稱，找到對照說明與官方手冊頁碼。</p><div class="search-box"><input id="search" type="search" placeholder="搜尋 Language、充電、後視鏡…" autocomplete="off" aria-label="搜尋手冊功能"></div></div></header>
+<main><div class="chips" id="chips"></div><div class="summary"><span id="count"></span><button id="reset" type="button">清除篩選</button></div><div id="results"></div><div class="panel"><strong>資料來源：</strong>福斯商旅《ID. Buzz 資訊娛樂系統中文手冊》（50 頁）。本工具收錄依照手冊整理的功能索引，<strong>不是全文搜尋</strong>，也無法更改車機語言。點選項目會開啟官方 PDF 對應頁；部分 iPhone PDF 閱讀器可能忽略跳頁參數，這時可依頁碼自行翻頁。<br><a class="link" id="allManual" target="_blank" rel="noopener">開啟完整官方手冊 ↗</a></div><footer>非 Volkswagen 官方 App · 請以車輛實際配備與官方手冊為準<br>僅於停車且安全時操作</footer></main>
+<script>
+const PDF='https://www.volkswagen-commercial.com.tw/idhub/content/dam/onehub_nfz/importers/tw/models/id-buzz/VWCV%20ID.%20Buzz%20%E8%B3%87%E8%A8%8A%E5%A8%9B%E6%A8%82%E7%B3%BB%E7%B5%B1%E4%B8%AD%E6%96%87%E6%89%8B%E5%86%8A.pdf';
+document.getElementById('allManual').href=PDF;
+// p uses the printed page number; the PDF has a cover at its first page.
+const DATA=[
+['主畫面與快捷設定','Home / Quick access',2,'系統','設定最愛車輛功能與 Home 主畫面，長按可編輯快捷鍵。'],
+['控制中心','Control center',3,'系統','從上方橫條下拉開啟控制中心，可編輯快捷選項。'],
+['主畫面版面配置','Home layout',4,'系統','長按主畫面的方格可調整功能排列與版面。'],
+['主選單功能','Main menu',5,'系統','查詢 Telephone、Radio/Media、Vehicle、App-Connect、Parking、Charging 等選單。'],
+['藍牙與手機連結','App-Connect / Bluetooth',5,'手機','App-Connect 手機多媒體連結及藍牙免持裝置入口；此頁是功能索引，非完整配對教學。'],
+['語音助理','IDA Voice assistant',6,'系統','IDA 智能語音助理；手冊註明僅支援英文聲控。'],
+['車輛外觀設定','Vehicle / Exterior',7,'車輛','包含車燈、輪胎、後視鏡、頭燈等功能入口。'],
+['車燈動態設定','Comfort light',11,'車輛','離家照明、返家照明、動態尾燈及轉向燈等設定。'],
+['胎壓警示重設','Tyres / Tyre settings',12,'車輛','重設車輛胎壓警示、設定冬季輪胎與車速警示。'],
+['後視鏡調整','Mirrors / Mirror settings',13,'車輛','左右同步調整、倒車鏡面下翻及鎖車自動收折。'],
+['頭燈設定','Headlights',14,'車輛','動態遠光燈、雨天自動頭燈、變換車道方向燈等設定。'],
+['車窗設定','Windows',15,'車輛','便捷開啟與關閉車窗功能選單。'],
+['車門上鎖解鎖','Opening and closing',16,'車輛','免鑰匙感應、離車自動上鎖、靠近自動解鎖與解鎖範圍。'],
+['電動尾門','Easy Open / Tailgate',16,'車輛','電動尾門自動啟閉功能設定。'],
+['電子穩定系統與煞車','Brakes / ESC',17,'車輛','ESC 電子行車動態穩定系統、車輛滑動防護與 N 檔提示。'],
+['Auto Hold 自動駐車','Auto Hold',17,'車輛','Auto Hold 自動駐車功能開啟或關閉。'],
+['車內互動光條','ID. Light',21,'車輛','充電、來電與駕駛安全警示等光條動態設定。'],
+['螢幕亮度與背景','Interior lighting / Display',22,'系統','調整螢幕顯示亮度和背景顏色。'],
+['座椅迎賓功能','Seat settings',23,'座椅','駕駛與副駕駛座迎賓設定。'],
+['停車引導系統','Parking / PDC',24,'停車','PDC 前後停車引導系統設定。'],
+['離車警示與後方來車','Exit warning / RTA',24,'停車','離車安全警示、後方橫向車流警示及停車自動煞車輔助。'],
+['電池電量與充電上限','Charging / Charge to 80%',25,'充電','查看預估續航里程、電量百分比並設定充電上限。'],
+['DC 快充功率','DC charging',25,'充電','檢視 DC 充電功率上限。'],
+['電池保護模式','Battery care mode',26,'充電','設定電池保護模式。'],
+['AC 充電電流','Reduce AC charging current',26,'充電','設定 AC 交流充電電流。'],
+['充電槍自動解鎖','Release AC charging connector automatically',26,'充電','設定 AC 充電接頭是否自動解鎖釋放。'],
+['駐車空調溫度','Stat. air con.',27,'空調','設定駐車空調的車室溫度與車窗自動加熱。'],
+['駐車空調排程','Stationary air conditioning schedule',28,'空調','設定駐車空調啟閉時間、日期。'],
+['解鎖時啟動空調','Air conditioning on unlock',29,'空調','設定車輛解鎖時自動開啟駐車空調。'],
+['駕駛輔助功能選單','Assist sys.',30,'輔助','以圖案或條列方式瀏覽駕駛輔助功能。'],
+['車道維持輔助','Lane keeping',32,'輔助','車道維持及偏移警示、方向盤震動提醒設定。'],
+['駕駛注意力提醒','Driver attention warning',33,'輔助','設定提醒聲音及偵測敏感度。'],
+['疲勞駕駛提醒','Fatigue warning',34,'輔助','調整疲勞駕駛警示開關與敏感度。'],
+['前方碰撞警示','Front collision / AEB',35,'輔助','調整前方碰撞預警與距離警示顯示。'],
+['盲點警示','Blind spot',36,'輔助','設定車側盲點警示及顯示亮度。'],
+['系統語言設定','Settings / Language',37,'系統','Settings（設定）選單內有 Language（語言設定），是否有中文選項取決於車機版本。'],
+['鍵盤語言','Second keyboard language',37,'系統','設定第二鍵盤語言。'],
+['時間日期與單位','Time / Date / Units',37,'系統','設定時間、日期、顯示單位。'],
+['無線充電','Wireless charging',38,'手機','開啟或關閉無線充電。'],
+['恢復原廠設定','Factory reset',38,'系統','恢復原廠設定；執行前請先確認影響。'],
+['駕駛模式','Driving profile / ECO / Comfort / Sport',39,'車輛','ECO、Comfort、Sport、Individual 駕駛模式。'],
+['環艙氛圍燈','Background / Mood',40,'車輛','選擇氛圍、個人化模式及燈光亮度。'],
+['個人化氛圍色彩','Background / Individual',41,'車輛','調整氛圍燈色彩與亮度。'],
+['按摩座椅','Seats / Massage',42,'座椅','設定按摩位置、時間、強度與模式。'],
+['前座同步調整','Seats / Synchronise',43,'座椅','可將副駕駛座調整至與駕駛座相同設定。']
+];
+const CATS=['全部','系統','車輛','手機','充電','空調','停車','輔助','座椅'];let cat='全部';const $=id=>document.getElementById(id);const search=$('search');
+function norm(v){return String(v).toLocaleLowerCase().replace(/[\s.\-_/]/g,'')}
+function render(){const q=norm(search.value.trim());const list=DATA.filter(x=>(cat==='全部'||x[3]===cat)&&(!q||norm(x.join(' ')).includes(q)));
+$('chips').innerHTML=CATS.map(c=>`<button type="button" class="chip ${c===cat?'active':''}" data-cat="${c}">${c}</button>`).join('');
+$('count').textContent=`找到 ${list.length} 項功能 · 共整理 ${DATA.length} 項`;
+$('results').innerHTML=list.length?list.map(x=>`<a class="card" href="${PDF}#page=${x[2]+1}" target="_blank" rel="noopener"><div class="cardtop"><div><h2>${x[0]}</h2><div class="eng">${x[1]}</div></div><div class="pg">手冊 p.${x[2]}</div></div><p class="desc">${x[4]}</p><div class="cardfoot">查看官方手冊對應頁 ↗</div></a>`).join(''):'<div class="empty">找不到符合的索引項目。<br>請換個中文或英文關鍵字，或開啟完整手冊。</div>';
+$('chips').querySelectorAll('[data-cat]').forEach(b=>b.addEventListener('click',()=>{cat=b.dataset.cat;render()}))}
+search.addEventListener('input',render);$('reset').addEventListener('click',()=>{cat='全部';search.value='';render();search.focus()});render();
+</script>
+</body></html>
